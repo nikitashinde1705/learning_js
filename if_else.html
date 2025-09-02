@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+
+        var marks = prompt("Enter your marks: ");
+        //marks = Number(marks);
+
+
+        if(marks<=35){
+            document.write("Fail");
+
+        }
+        else if(marks > 35 && marks <= 45)
+        {
+            document.write("Pass");
+        }
+        else if(marks >=46 && marks <=75){
+            document.write("A grade");
+        }
+        else{
+            document.write("Destinction");
+        }
+
+
+
+    </script>
+
+    <script>
+        var month = prompt("Enter month: ");
+        month = parseInt(month);
+
+        if(month == 2){
+            document.write("Number of days are 28 or 29");
+
+        }
+        else if(month >12 || month < 1){
+            document.write("Invalid");
+        }
+        else if( month == 4 || month == 6 || month == 8 || month == 10 || month == 12){
+            document.write("Number of days 31");
+
+        }
+        else{
+            document.write("Number of days 30");
+        }
+       
+    </script>
+    
+</body>
+</html>

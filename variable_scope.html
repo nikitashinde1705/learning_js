@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Variable scope</title>
+    </head>
+    <body>
+
+        <script>
+        //global scope
+        var a = 1;
+        let b = 2;
+        const c = 3;
+
+        //functional scope
+
+        function scopeExample(){
+            var a = 10;    //function scope
+            let b = 20;    //block scope
+            const c = 30;  //block scope
+
+            if(true){       //inside this block
+                var a = 101;  //reassign x (function scope)
+                let b = 202;  //y only for this block
+                const c = 302;//z only for this block
+                document.write(a); //101
+                document.write(b); //202
+                document.write(c); //302
+                document.write("</br>");
+
+
+            }
+
+                document.write(a); //101
+                document.write(b); //20
+                document.write(c); //30
+                document.write("</br>");
+
+        }
+                scopeExample();
+                document.write(a); //1
+                document.write(b); //2
+                document.write(c); //3
+                document.write("</br>");
+
+
+
+    </script>
+
+    </body>
+</html>
