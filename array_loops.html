@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Array</title>
+    </head>
+    <body>
+
+        <script>
+
+        var mixArray = [1 , "Nikita", true, 55.7];
+        document.write("<b>MixArray</b> " + mixArray);
+
+    </script>
+        <br>
+
+        <script>
+        var array = [10,20,30,40,50];
+
+        // for loop
+        var sum = 0;
+
+        for(var i = 0; i<array.length; i++){
+
+            document.write("<li>" + array[i] + "</li>")
+            sum = sum + array[i];
+        }
+        document.write("Sum is: " + sum);
+
+        // while loop
+        sumWhile = 0;
+        var j = 0;
+        while(j < array.length){
+             document.write("<li>" + array[j] + "</li>")
+            sumWhile += array[j];
+            j++;
+        }
+        document.write("Sum is: " + sumWhile);
+
+        //do while loop
+        sumdoWhile = 0;
+        var k = 0;
+        do{
+            document.write("<li>" + array[k] + "</li>")
+            sumdoWhile += array[k];
+            k++;
+        }
+        while( k < array.length)
+        
+        document.write("Sum is: " + sumdoWhile);
+        
+    </script>
+
+    </body>
+</html>

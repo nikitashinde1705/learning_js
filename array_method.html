@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Methods</title>
+</head>
+<body>
+    
+    <script>
+        //array modify , delete
+        var a = ["Nikita", "BE ENTC", "DYPCOE", 2025];
+        document.write( a + "<br>");
+
+        a[0] = "Aditi";
+        document.write(a + "<br>");
+
+        delete a[1];
+        document.write(a + "<br>");
+    </script>
+
+    <script>
+        //sort ascending
+        var b = ["Nikita", "Aakash", "Bharti", "Aditi", "Chanchal"];
+        document.write(b + "<br>");
+
+        b.sort();
+        document.write(b + "<br>");
+
+        b.reverse();
+        document.write(b + "<br>");
+    </script>
+
+    <script>
+        //push pop
+        var c = ["Pune", "Mumbai", "Nashik"];
+        document.write(c + "<br>");
+        c.pop();
+        document.write(c + "<br>");
+        c.push("Latur");
+        document.write(c + "<br>");
+
+    </script>
+
+    <script>
+        //shift unshift
+        var d = ["orange", "banana", "apple"];
+        document.write(d + "<br>");
+
+        d.shift(); //delete 1st element
+        document.write(d + "<br>");
+
+        d.unshift("mango");
+        document.write(d + "<br>");
+    </script>
+
+    <script>
+        //join , concat
+        var a  = ["a", "b", "c"];
+        var b = ["d", "e" , "f"];
+        var c = ["g", "h", "i"];
+
+        var d = a.concat(b);
+        document.write(d + "<br>");
+
+        var e = d.join("/");
+        document.write(e + "<br>");
+
+        var f = a.concat(b,c);
+        document.write(f + "<br>");
+    </script>
+
+</body>
+</html>
