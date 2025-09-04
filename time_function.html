@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Function</title>
+</head>
+<body>
+
+    <h1>Digital Clock</h1>
+    <h1 id="clock"></h1>
+
+    <h1>Counter</h1>
+    <h1 id="counter"></h1>
+    <button onclick="startCounter()"> Start </button>
+    <button onclick="stopCounter()"> Stop </button>
+
+    <h3 id="msg">Hi Aakash how are you...</h3>
+    <script>
+        setTimeout(function(){
+            document.getElementById('msg').innerHTML = "Hi nikita i am fine....How are you?";
+        },5000);
+    </script>
+
+
+    <script>
+        function showTime() {
+            let now = new Date();
+            let time = now.toLocaleTimeString();
+            document.getElementById("clock").innerHTML = time;
+        }
+        setInterval(showTime, 1000);
+
+    </script>
+
+    <script>
+        let count = 0;
+        let counter = setInterval(function() {
+            count++;
+            document.getElementById("counter").innerText = count;
+        }, 1000);
+
+        function stopCounter(){
+            clearInterval(counter);
+        }
+
+        function startCounter(){
+            startCounter(counter);
+        }
+    </script>
+    
+</body>
+</html>
