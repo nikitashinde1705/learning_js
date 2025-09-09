@@ -1,43 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact Form</title>
 
-    <form action="">
-        <h1>Contact Us</h1>
+        <style>
+            section{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            label{
+                color: black;
+                font-weight: 500;
+                font-size: 1.2rem;
+                margin: 5px;
+            }
+            input{
+                margin-top: 5px;
+                padding: 5px;
+        
+            }
 
-        <label for="">Name: </label><br>
-        <input type="text" placeholder="Your name"><br><br>
+            #successAlert{
+                display: none;
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
 
-        <label for="">Email: </label><br>
-        <input type="email" placeholder="Your email"><br><br>
+        <section>
 
-        <label for="">Mobile Number: </label><br>
-        <input type="number" placeholder="Your mobile number"><br><br>
+            <form  onsubmit="return validate()">
+                <h1>Contact Us</h1>
 
-        <label for="">Message: </label><br>
-        <textarea name="" id=""></textarea><br><br>
+                <!-- success alert -->
+                <div id="successAlert">Form submited successfully..!</div>
 
-        <label for="">Gender: </label><br>
+                <label for>Name: </label><br>
+                <input type="text" id="name" placeholder="Your name"><br><br>
+                <span class="error" id="nameError"></span>
 
-        <input type="radio" id="male" name="gender">
-         <label for="">Male</label>
-         <input type="radio" id="female" name="gender">
-         <label for="">Female</label>
-         <input type="radio" id="other" name="gender">
-         <label for="">other</label><br><br>
+                <label for>Email: </label><br>
+                <input type="email" id="email" placeholder="Your email"><br><br>
+                <span class="error" id="emailError"></span>
 
-         <input type="checkbox">
-         <label for="">I agree to the terms & conditions</label><br><br>
+                <label for>Mobile Number: </label><br>
+                <input type="number" id="mobile"
+                    placeholder="Your mobile number"><br><br>
+                <span class="error" id="mobileNumberError"></span>
 
-         <button>Submit</button>
+                <label for>Password: </label><br>
+                <input type="password" id="password"
+                    placeholder="password"><br><br>
+                <span class="error" id="passwordError"></span>
 
+                <label for>Confirm Password: </label><br>
+                <input type="password" id="confirmPassword"
+                    placeholder="confirm password"><br><br>
+                <span class="error" id="confirmPasswordError"></span>
 
-    </form>
-    
-</body>
+                <label for>Message: </label><br>
+                <textarea id="message" rows="3" cols="4"></textarea><br><br>
+                <span class="error" id="msgError"></span>
+
+                <label for>Gender: </label><br>
+
+                <input type="radio" id="male" name="gender">
+                <label for>Male</label>
+                <input type="radio" id="female" name="gender">
+                <label for>Female</label>
+                <input type="radio" id="other" name="gender">
+                <label for>other</label><br><br>
+                <span class="error" id="genderError"></span>
+
+                <input type="checkbox" id="agree">
+                <label for>I agree to the terms & conditions</label><br><br>
+                <span class="error" id="checkboxError"></span>
+
+                <button type="submit">Submit</button>
+
+            </form>
+        </section>
+
+        <script>
+            function validate() {
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const password = document.getElementById("password").value.trim();
+                const mobile = document.getElementById("mobile").value.trim();
+                const confirmPassword = document.getElementById("confirmPassword").value.trim();
+                const message = document.getElementById("message").value.trim();
+                const agree = document.getElementById("agree").checked;
+                const gender = document.querySelector('input[name="gender"]:checked');
+
+                //error spans
+                const nameError = document.getElementById("nameError");
+                const emailError = document.getElementById("emailError");
+                const mobileNumberError = document.getElementById("mobileNumberError");
+                const passwordError = document.getElementById("passwordError");
+                const confirmPasswordError = document.getElementById("confirmPasswordError");
+                const msgError = document.getElementById("msgError");
+                const genderError = document.getElementById("genderError");
+                const checkboxError = document.getElementById("checkboxError");
+
+                //clear previous error msg
+                nameError.textContent = "";
+                emailError.textContent = "";
+                passwordError.textContent = "";
+                confirmPasswordError.textContent = "";
+                msgError.textContent = "";
+                genderError.textContent = "";
+                checkboxError.textContent = "";
+
+                let isvalid = true;
+
+                //Vaidate  fields
+
+                if (name === ""){
+                    nameError.textContent = "Please enter your name.";
+                    isvalid = false;
+                } else if (name.length < 2) {
+                    nameError.textContent = "Please enter at least 2 character.";
+                    isvalid = false;
+                }
+
+                if (email === "") {
+                    emailError.textContent = "Please enter your email.";
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    emailError.textContent = "Please enter valid email address.";
+                    isvalid = false;
+                }
+
+                //mobile
+                if(mobile === ""){
+                    mobileNumberError.textContent = "Please enter your number.";
+                    isvalid = false;
+                } else if  (!/^\d{10}$/.test(mobile)){
+                    mobileNumberError.textContent = "Please enter a valid 10 digit";
+                }
+
+                const passwordPattern = /^(?=.[0-9])(?=.[!@#$%^&])[A-Za-z0-9!@#$%^&]{6,}$/; 
+                if(password === ""){
+                   
+                    passwordError.textContent = "Please enter a password.";
+                    isvalid = false;
+                
+                } else if (!passwordPattern.test(password)){
+                    passwordError.textContent = "Password must be at least 6 characters. include a number and special character";
+                    isvalid = false;
+                }
+
+                if (confirmPassword === "") {
+                    confirmPasswordError.textContent = "please enter your confirm password";
+                    isvalid = false;
+                 } else if (password !== confirmPassword) {
+                         confirmPasswordError.textContent = "passwords do not match";
+                         isvalid = false;
+                     }
+
+                //message
+
+                if (message === "") {
+                    msgError.textContent = "Please enter message.";
+                    isvalid = false;
+                } else if (message.length < 20){
+                    msgError.textContent = "Write atleast 20 charcter";
+                    isvalid = false;
+                }
+
+                if (!gender) {
+                    genderError.textContent = "Please select your gender";
+                    isvalid = false;
+                }
+
+                if (!agree) {
+                    checkboxError.textContent = "You must agree to terms and conditions.";
+                    isvalid = false;
+                }
+
+                if (isvalid){
+                    const alertBox = document.getElementById("successAlert");
+                    alertBox.style.display = "block";
+                    alertBox.textContent = "Form submitted succesfully"
+                }
+
+                return isvalid;
+
+            }
+        </script>
+
+    </body>
 </html>
