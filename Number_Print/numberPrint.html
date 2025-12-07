@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Q.1: Number Printing Logic </title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        #output { 
+            margin-top: 20px; 
+            padding: 10px; 
+            border: 1px solid #ccc;
+            min-height: 200px;
+            white-space: normal;
+            line-height: 25px;
+        }
+        input, button {
+            padding: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Smart Number Printer (1 to 100)</h2>
+
+<input type="number" id="jumpTo" placeholder="Enter number like 92" />
+<button id="goBtn">Go</button>
+
+<div id="output"></div>
+
+<script>
+    let current = 1;               // Current number printing normally
+    let timer = null;              // Interval timer reference
+    let isJumping = false;         // Check when Go button is clicked
+
+    const output = document.getElementById("output");
+    const goBtn = document.getElementById("goBtn");
+
+    // Start normal printing 1 to 100
+    function startPrinting() {
+        timer = setInterval(() => {
+            if (!isJumping) {            // Only print normally if user has not clicked Go
+                printNumber(current);
+                current++;
+
+                if (current > 100) {
+                    clearInterval(timer);  // Stop after 100
+                }
+            }
+        }, 1000); // printing speed (300ms)
+    }
+
+    // Print number to UI
+    function printNumber(num) {
+        output.innerHTML += num + " ";
+    }
+
+    // When user clicks Go
+    goBtn.addEventListener("click", () => {
+        const jumpValue = Number(document.getElementById("jumpTo").value);
+
+        if (!jumpValue || jumpValue < 1 || jumpValue > 100) {
+            alert("Enter number between 1 to 100");
+            return;
+        }
+
+        // Stop the normal printing
+        isJumping = true;
+
+        clearInterval(timer);
+
+        // First: Print from jumpValue to 100
+        let j = jumpValue;
+
+        function printJumpNumbers() {
+            if (j <= 100) {
+                printNumber(j);
+                j++;
+                setTimeout(printJumpNumbers, 200);
+            } else {
+                // After reaching 100 → print remaining numbers
+                printRemainingNumbers();
+            }
+        }
+
+        printJumpNumbers();
+    });
+
+    // Print remaining numbers (the ones missed)
+    function printRemainingNumbers() {
+        let r = current;   // current stopped point (ex: 6)
+
+        function printRemaining() {
+            if (r < jumpTo.value) {
+                printNumber(r);
+                r++;
+                setTimeout(printRemaining, 200);
+            }
+        }
+
+        printRemaining();
+    }
+
+    // Start auto printing
+    startPrinting();
+</script>
+
+</body>
+</html>
